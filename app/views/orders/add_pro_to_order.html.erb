@@ -1,0 +1,12 @@
+<h2>Produkte hinzufügen</h2>
+
+
+<%=form_tag(put_pro_in_order_path) do %>
+	<%= select_tag "pro_id", options_from_collection_for_select(@products, "id", "name"),class: "form-control input-sm"%>
+
+	<input type="hidden" id="order_id" name="order_id" value="<%=@order_id%>">
+
+<%= submit_tag "Hinzufügen", class: "btn btn-success btn-great" %>
+ <%= link_to "Abrechen", dash_board_path(),class: "btn btn-danger"%>
+
+<%end%>

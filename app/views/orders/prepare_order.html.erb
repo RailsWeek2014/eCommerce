@@ -1,0 +1,84 @@
+<div class="nav" style="margin-top:50px;position:absolute">
+	<h1>Bestellung Bearbeiten</h1>
+
+	<%= form_tag(save_order_path) do %>
+	<% @order.each do |order|%>
+
+	<div class="form-group" style="width:50%">
+		<table class="table table-hover table-striped;position:absolute" >
+			<tr>
+				<td><%= label_tag :Bestellnummer %></td>
+				<td><%= text_field_tag "order_hash[#{:order_id}][order_id]",order[:order_id],:readonly=>true%></td>
+			</tr>
+
+			<tr>
+				<td><%= label_tag :Kunde %></td>
+				<td><%= text_field_tag "order_hash[#{:order_id}][customer]",order[:customer],:readonly=>true%></td>
+			</tr>
+			<tr>
+				<td><%= label_tag :preis %></td>
+				<td><%= text_field_tag "order_hash[#{:order_id}][price]",order[:amount]%></td>
+			</tr>
+
+			<tr>
+				<td><%= label_tag :bestell_status %></td>
+				<td>
+					<select name="order_hash[order_id][order_status]">
+						<option value="1" <% if order[:order_status]==1%> selected <%end%> >Neue Bestellung</option>
+						<option value="2"  <% if order[:order_status]==2%> selected <%end%> >Bestellung in Bearbeitung</option>
+						<option value="3"  <% if order[:order_status]==3%> selected <%end%> >Abgeschlossen(versand)</option>
+						<option value="4"  <% if order[:order_status]==4%> selected <%end%>>Storniert</option>
+					</select>
+
+				</td>
+			</tr>
+
+			<tr>
+				<td><%= label_tag :Produkte %></td>
+				<td>
+					<a href="javascript:void(0)" id="load_products"
+					class="btn btn-success" name="<%=order[:order_id]%>">Produkt hinzufügen</a>
+				</td>
+			</tr>	
+			
+			<% order[:order_content].each do |content| %>
+			<tr>
+				<td><%= label_tag :name %></td>
+				<td><%= text_field_tag "order_hash[#{:order_id}][content][#{content[:id]}][name]",content[:product_name],:readonly=>true%>
+
+
+					<input type="hidden" name="order_hash[<%=:order_id%>][content][<%=content[:id]%>][id]" value="<%=content[:id]%>" /> 
+				</td>
+			</tr>
+			<tr>
+				<td><%= label_tag :menge %></td>
+				<td><%= text_field_tag "order_hash[#{:order_id}][content][#{content[:id]}][quantity]",content[:quantity]%></td>
+			</tr>
+			<%end%>
+		</table>
+
+		<br>
+	</div>
+	<%end%>
+	<div id="sub_cont">
+		<%=submit_tag "Speichern", data: { confirm: "Sind Sie Sicher?" }, class: "btn btn-danger btn-great" %>
+	</div>
+	<% end %>
+	
+
+</div>
+<div style="float:left;position:absolute;margin-left:60%;margin-top:50px;display:none" id="pro_content"></div>	
+
+
+<script type="text/javascript">
+$(function(){
+	$("#load_products").click(function() {
+		$("#pro_content").show();
+		$("#pro_content").load("<%=add_pro_to_order_path(params[:id])%>");
+		$("#sub_cont").hide();
+	});
+});
+
+</script>
+
+

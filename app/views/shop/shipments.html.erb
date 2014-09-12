@@ -1,0 +1,33 @@
+<h1>Versandarten</h1>
+
+<table class="table table-hover">
+	<thead>
+		<th></th>
+		<th>Versandart Name</th>
+		<th>Versandart Beschreibung</th>
+	</thead>
+<% @shipments.each do |shipment|%>
+	<tr>
+		<td><input type="radio" id="<%=shipment.id%>" <%if shipment.id==2%>checked=checked <%end%> value="<%=shipment.id%>" name="shipment" /></td>
+		<td><%=shipment.name%></td>
+		<td><%=shipment.description%></td>
+	</tr>
+
+<%end%>
+
+</table>
+
+
+<%= link_to "Weiter zur Zusammenfassung",'#', :onclick => '(goToSummary())', class: "btn btn-mini btn-success",style: "margin-left:75%;position:absolute"%>
+<%= link_to "Zurück", shop_path, class: "btn btn-mini btn-success", style: "position:absolute" %>
+
+<script type="text/javascript">
+
+
+
+function goToSummary(){
+	window.location = "summary?shipment_id="+jQuery( 'input[name=shipment]:checked' ).val();
+}
+
+
+</script>

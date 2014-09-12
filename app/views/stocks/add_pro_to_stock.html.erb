@@ -1,0 +1,41 @@
+<h2 style="text-decoration:center">Ihr Warenkorb</h2>
+<br>
+<br>
+<script type="text/javascript">
+
+
+
+</script>
+<%= form_tag(pay_methods_path) do %>
+  <% @stock_products.each do |pro|%>
+	  
+	  <div class="form-group">
+	    <%= label_tag :produktname %>
+		<%= text_field_tag "pro_hash[#{pro.id}][name]",pro.name%>
+	  
+	    <%= label_tag :preis %>
+	    <%= text_field_tag "pro_hash[#{pro.id}][price]",pro.price%>
+	 
+	    <%= label_tag :menge %>
+	    <%= number_field_tag "pro_hash[#{pro.id}][menge]",1%>
+
+	    <%= label_tag :menge %>
+	    <%= link_to "Löschen", delete_pro_from_stock_path(pro.id),class: "btn btn-success", id:'delete_from_basket'%>
+	  </div>
+<% end %>
+
+
+<%if @stock_products.count > 0 %>  
+	<%= submit_tag 'Weiter zu den Bezahlmethoden ---->>',class: "btn btn-success", style: "margin-left:50%;position:absolute"%>
+<%end%>
+
+
+<%end%>
+<%=link_to "<<---- Zurück zum Shop", shop_path, class: "btn btn-success", id: "back_to_stock"%>
+
+<script type="text/javascript">
+
+
+
+
+</script>

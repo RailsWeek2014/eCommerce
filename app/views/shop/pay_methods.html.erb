@@ -1,0 +1,33 @@
+<h1>Zahlweisen</h1>
+
+<table class="table table-hover">
+	<thead>
+		<th></th>
+		<th>Zahlmethode Name</th>
+		<th>Zahlmethode Beschreibung</th>
+	</thead>
+<% @pay_methods.each do |pay_method|%>
+	<tr>
+		<td><input type="radio" id="<%=pay_method.id%>" <%if pay_method.id==1%>checked=checked <%end%> value="<%=pay_method.id%>" name="payment" /></td>
+		<td><%=pay_method.payment_name%></td>
+		<td><%=pay_method.payment_description%></td>
+	</tr>
+
+<%end%>
+
+</table>
+
+
+<%= link_to "Weiter zum Versand",'#', :onclick => '(goToShipment())', class: "btn btn-mini btn-success",style: "margin-left:75%;position:absolute"%>
+<%= link_to "Zurück", stock_path, class: "btn btn-mini btn-success", style: "position:absolute" %>
+
+<script type="text/javascript">
+
+
+
+function goToShipment(){
+	window.location = "shipments?payment_id="+jQuery( 'input[name=payment]:checked' ).val();
+}
+
+
+</script>

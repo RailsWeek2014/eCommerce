@@ -1,0 +1,50 @@
+<div style="margin-top:20px">
+
+	<%=button_tag "Produkte anzeigen", class: "btn btn-success", id: "load_products"%>
+
+
+	<%=button_tag "Kategorie anzeigen", class: "btn btn-success", id: "load_categories"%>
+
+	<%=button_tag "Zahlmethoden anzeigen", class: "btn btn-success", id: "load_pay_methods"%>
+
+
+	<%=button_tag "Kunden anzeigen", class: "btn btn-success", id: "load_customer"%>
+
+
+	<%=button_tag "Bestellungen anzeigen", class: "btn btn-success", id: "load_orders"%>
+
+	<%=button_tag "Versandarten", class: "btn btn-success", id: "load_shipments"%>
+
+
+</div>
+<div id="content"></div>
+
+
+
+<script type="text/javascript">
+	
+	$("#load_products").click(function() {
+		$("#content").load('<%=products_path%>');
+	});
+
+	$("#load_categories").click(function() {
+		$("#content").load('<%=categories_path%>');
+	});
+
+	$("#load_pay_methods").click(function() {
+		$("#content").load('<%=payment_methods_path%>');
+	});
+
+	$("#load_customer").click(function() {
+		$("#content").load('<%=show_all_user_path%>');
+	});
+
+	$("#load_orders").click(function() {
+		$("#content").load('<%=show_orders_path%>');
+	});
+
+	$("#load_shipments").click(function() {
+		$("#content").load('<%=shipments_path%>');
+	});
+
+</script>

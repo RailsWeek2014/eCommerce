@@ -1,0 +1,37 @@
+<h1>Zusammenfassung</h1>
+
+
+<table class="table table-hover">
+	<tr>
+		<td>Produktname</td>
+		<td>Menge</td>
+		<td>Preis</td>
+	</tr>
+
+	<% @summary_products.each do |pro|%>
+		<tr>
+			<td><%=pro['name']%></td>
+			<td><%=pro['menge']%></td>
+			<td><%=pro['price']%></td>
+		</tr>
+	<%end%>
+	<tr>
+			<td></td>
+			<td>Versandpreis</td>
+			<td><%=@shipment.cost%></td>
+		</tr>
+	<tr>
+			<td></td>
+			<td></td>
+			<td><h4>Gesamtpreis:<%=@amount%></h4></td>
+		</tr>
+
+</table>
+
+<p style="font-size:20px">Versand: <%=@shipment.name%></p>
+
+<p style="font-size:20px">Bezahlmethode: <%=@pay_method.payment_name%></p>
+
+<%= link_to "Bestellung abschicken", order_done_path, class: "btn btn-success", style: "margin-left:75%" %>
+
+<%= link_to "Bezahlmethode bearbeiten", pay_methods_path, class: "btn btn-danger" %>

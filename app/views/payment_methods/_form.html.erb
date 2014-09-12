@@ -1,0 +1,38 @@
+<%= form_for @payment_method, :html => { :class => "form-horizontal payment_method" } do |f| %>
+
+    <% if @payment_method.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@payment_method.errors.count, "error") %> prohibited this payment_method from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @payment_method.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :payment_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :payment_name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@payment_method[:payment_name]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :payment_description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :payment_description, :class => 'form-control' %>
+    </div>
+    <%= error_span(@payment_method[:payment_description]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            payment_methods_path, :class => 'btn btn-default' %>
+
+<% end %>

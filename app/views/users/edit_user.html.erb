@@ -1,0 +1,15 @@
+<div class="nav" style="margin-top:50px">
+<h2>Kunden Bearbeiten</h2>
+
+<%= form_for @user, url: save_user_path(@user[:id]) do |f| %>
+
+  <%= f.label :Email, class: "form-control" %>
+  <%= f.text_field :email,class: "form-control" %>
+  <%= f.label :password, class: "form-control"%>
+  <%= f.password_field :password,class: "form-control" %>
+  <%= f.label :password_confirmation, class: "form-control"%>
+  <%= f.password_field :password_confirmation,class: "form-control" %>
+  <%= f.submit class:"btn btn-great" %>
+
+<% end %>
+</div>

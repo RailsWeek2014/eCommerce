@@ -1,0 +1,31 @@
+<h1 id="content" style="margin-top:35px"> Bestellungen</h1>
+
+	<table class="table table-striped">
+		<thead>
+			<th>Bestellungsnummer</th>
+			<th>Kunde</th>
+			<th>Bezahlmethode</th>
+			<th>Rechnungsbetrag</th>
+			<th>Bearbeiten</th>
+		</thead>
+		<% @orders.each do |order|%>
+
+		<tr class="show_order_content">
+			<td><%=order[:order_id]%></td>
+			<td><%=order[:customer]%></td>
+			<td><%=order[:payment]%></td>
+			<td><%=order[:amount]%></td>
+			<td><%=link_to "Bestellungen bearbeiten", prepare_order_path(order[:order_id]), class: "btn btn-mini btn-success", style: "color:white" %>
+			<%=link_to "Löschen", delete_order_path(order_id:order[:order_id]), class: "btn btn-mini btn-danger", style: "color:white" %>
+
+
+			</td>
+		</tr>	
+
+				<%end%>
+			</table>
+		</div>
+
+		<script type="text/javascript">
+
+		</script>
